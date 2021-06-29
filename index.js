@@ -18,6 +18,14 @@ app.use(cors());
 //routes
 app.use('/api/', apiRouter);
 
+const path = require('path');
+
+app.use(express.static(path.resolve(__dirname, './tasklist-front/build')));
+
+app.get("*", (request, response) => {
+    response.sendFile(path.resolve(__dirname, "./tasklist-front/build", "index.html"))
+})
+
 app.listen(port, () => {
     console.log('essa');
 });
